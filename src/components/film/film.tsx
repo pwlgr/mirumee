@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-
-type Planet = {
-	name: any;
-	planets: any;
-};
+import { Planet } from '../../types/types';
 
 const Film: React.FC<Planet> = (props) => {
 	const { planets } = props;
