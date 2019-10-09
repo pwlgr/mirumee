@@ -7,7 +7,7 @@
 	border-radius: 50%;
 	animation: spin 2s linear infinite;
 	position: relative;
-
+	margin: 20px auto;
 	&:before,
 	&:after {
 		content: "";
@@ -19,7 +19,7 @@
 		position: absolute;
 		top: 5px;
 		left: -5px;
-		box-shadow: 3px -3px 0 3px $gray;
+		box-shadow: 1px -1px 0 1px #f1f1f1;
 	}
 
 	&:after {
@@ -28,7 +28,7 @@
 		border: none;
 		border-bottom: 3px solid $light-blue;
 		border-left: 3px solid $light-blue;
-		box-shadow: -3px 4px 0 3px $gray;
+		box-shadow: -1px 1px 0 1px #f1f1f1;
 	}
 }
 

@@ -4,7 +4,7 @@ import uuid from 'uuid/v1';
 import Film from '../film/film';
 import NewFilm from '../newFilm/newFilm';
 import { Loader } from '../loader';
-import { Logo } from '../SVG/logo';
+import { Logo } from '../svg/logo';
 import './scss/index.scss';
 
 const Films: React.FC = () => {
