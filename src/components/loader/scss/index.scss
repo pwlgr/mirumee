@@ -1,0 +1,42 @@
+@import '../../../globalStyles/variables';
+
+.loader {
+	width: 50px;
+	height: 50px;
+	border: 4px solid $light-blue;
+	border-radius: 50%;
+	animation: spin 2s linear infinite;
+	position: relative;
+
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		width: 10px;
+		height: 10px;
+		border-top: 3px solid $light-blue;
+		border-right: 3px solid $light-blue;
+		position: absolute;
+		top: 5px;
+		left: -5px;
+		box-shadow: 3px -3px 0 3px $gray;
+	}
+
+	&:after {
+		top: 39px;
+		left: 35px;
+		border: none;
+		border-bottom: 3px solid $light-blue;
+		border-left: 3px solid $light-blue;
+		box-shadow: -3px 4px 0 3px $gray;
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

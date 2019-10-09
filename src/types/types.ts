@@ -10,3 +10,7 @@ export interface Film {
 export type Films = {
 	films: Array<Film>;
 };
+
+export interface AddFilm {
+	addFilm: (Film) => void;
+}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './style.scss';
+import '../globalStyles/index.scss';
 import PageInterface from '../PageInterface';
 import Films from './films/films';
 

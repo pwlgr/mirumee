@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Planet } from '../../types/types';
+import { Loader } from '../loader';
 
-const Film: React.FC<Planet> = (props) => {
-	const { planets } = props;
+const Film: React.FC<Planet> = ({ name, planets }) => {
 	const [ planetList, setPlanetList ] = useState([]);
 	const [ loading, setLoading ] = useState(false);
 	const getUsers = async () => {
@@ -20,7 +20,7 @@ const Film: React.FC<Planet> = (props) => {
 	};
 	return (
 		<div>
-			<div onClick={getUsers}>{loading ? 'loading' : props.name}</div>
+			<div onClick={getUsers}>{loading ? <Loader /> : name}</div>
 			{planetList.length ? planetList.map((planet) => <p key={planet.name}>{planet.name}</p>) : null}
 		</div>
 	);

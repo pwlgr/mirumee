@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Autocomplete } from 'react-toolbox/lib/autocomplete';
-import { Film } from '../../types/types';
+import { Film, AddFilm } from '../../types/types';
 import { object } from 'prop-types';
 
-interface IProps {
-	addFilm?: any;
-}
-
-const NewFilm: React.FC<IProps> = ({ addFilm }) => {
+const NewFilm: React.FC<AddFilm> = ({ addFilm }) => {
 	const [ planets, setPlanets ] = useState([]);
 	const [ suggestions, setSuggestions ] = useState({});
 	const [ film, setFilm ] = useState<Film>({ title: '', planets: [] });

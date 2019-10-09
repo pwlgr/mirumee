@@ -1,0 +1,20 @@
+@import '../../../globalStyles/variables.scss';
+
+.films-container {
+	margin: 30px auto;
+	background: $gray;
+	width: 790px;
+	min-height: 736px;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	&__list {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		min-height: 400px;
+		width: 80%;
+	}
+}
