@@ -17,5 +17,13 @@
 		flex-direction: column;
 		min-height: 400px;
 		width: 100%;
+		padding-bottom: 30px;
+		border-bottom: 4px dotted $white;
 	}
+}
+
+h3 {
+	color: $dark-gray;
+	text-align: center;
+	padding: 10px;
 }

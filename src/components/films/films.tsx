@@ -33,7 +33,8 @@ const Films: React.FC = () => {
 					films.map(({ title, planets }) => <Film key={title} name={title} planets={planets} />)
 				)}
 			</div>
-			<NewFilm addFilm={addNewFilm} />
+			<NewFilm addFilm={addNewFilm} name="Add movie" />
+			<p className="copyright">COPYRIGHT © 2019 MIRUMEE SOFTWARE</p>
 		</div>
 	);
 };

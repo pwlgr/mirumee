@@ -7,7 +7,7 @@
 		"start": "webpack-dev-server --mode development --hot",
 		"build": "webpack --mode production"
 	},
-	"author": "",
+	"author": "Paweł Waligóra",
 	"license": "ISC",
 	"devDependencies": {
 		"awesome-typescript-loader": "^5.2.1",

@@ -58,9 +58,9 @@ const Film: React.FC<Planet> = ({ name, planets }) => {
 				<p>{name}</p>
 				{!details ? <ArrowDown /> : <ArrowUp />}
 			</div>
-			<div className="film-container-details">
+			<div className="film-container__details">
 				{details && <>
-					<div className="film-container-details__tags">
+					<div className="film-container__details__tags">
 						{params.map(({ tag, data }, i) => <span
 							key={`tag_${i}${name}`}
 							onClick={(e) => {
@@ -73,7 +73,7 @@ const Film: React.FC<Planet> = ({ name, planets }) => {
 					<Loader />
 				) : planetList.length ? (
 					<div>
-					{planetList.sort(sortPlanets).map(({ name, rotation_period, orbital_period, diameter, climate, surface_water, population }) => <div key={`param_${name}`} className="film-container-details__tags">
+					{planetList.sort(sortPlanets).map(({ name, rotation_period, orbital_period, diameter, climate, surface_water, population }) => <div key={`param_${name}`} className="film-container__details__tags">
 						<span>{name}</span>
 						<span>{rotation_period}</span>
 						<span>{orbital_period}</span>
@@ -83,7 +83,7 @@ const Film: React.FC<Planet> = ({ name, planets }) => {
 						<span>{population}</span>
 					</div>)}
 					</div>
-				) : null}
+				) : <h3>Sorry, no planets...</h3>}
 					</>
 				}
 

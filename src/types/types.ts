@@ -13,4 +13,5 @@ export type Films = {
 
 export interface AddFilm {
 	addFilm: (Film) => void;
+	name: string;
 }
