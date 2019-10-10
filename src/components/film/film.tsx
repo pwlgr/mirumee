@@ -1,27 +1,26 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Planet } from '../../types/types';
 import { Loader } from '../loader';
 import { ArrowDown } from '../svg/arrowDown';
 import { ArrowUp } from '../svg/arrowUp';
 import './scss/index.scss';
 
-const params = [
-	{ tag: 'Planet Name', data: 'name' },
-	{ tag: 'Rotation period', data: 'rotation_period' },
-	{ tag: 'Orbital period', data: 'orbital_period' },
-	{ tag: 'Diameter', data: 'diameter' },
-	{ tag: 'Climate', data: 'climate' },
-	{ tag: 'Surface water', data: 'surface_water' },
-	{ tag: 'Population', data: 'population' }
-];
-
+const parameters = {
+	name: 'Planet Name',
+	rotation_period: 'Rotation period',
+	orbital_period: 'Orbital period',
+	diameter:'Diameter',
+	climate:'Climate',
+	surface_water: 	'Surface water',
+	population: 'Population'
+};
 
 const Film: React.FC<Planet> = ({ name, planets }) => {
 	const [ planetList, setPlanetList ] = useState([]);
 	const [ loading, setLoading ] = useState(false);
 	const [ details, setDetails ] = useState(false);
-	const [sorting, setSorting] = useState('name');
+	const [ sorting, setSorting ] = useState('name');
 	const getPlanets = async (e) => {
 		e.stopPropagation();
 		setDetails(!details);
@@ -30,11 +29,9 @@ const Film: React.FC<Planet> = ({ name, planets }) => {
 			const response = await fetch(film);
 			return response.json();
 		});
-		const done = await Promise.all(fetchedPlanetsInfo).then((asd) => {
-			return asd;
-		});
-			setPlanetList(done);
-			setLoading(false);
+		const done = await Promise.all(fetchedPlanetsInfo).then((info) => info);
+		setPlanetList(done);
+		setLoading(false);
 	};
 	const sortPlanets = (a,b) => {
 		if ( a[sorting] < b[sorting]){
@@ -45,6 +42,12 @@ const Film: React.FC<Planet> = ({ name, planets }) => {
 		  }
 		  return 0;
 	}
+	const generateProperties = (prop, value, key) => (
+		<div key={`${prop}_${value}_${key}`}>
+			<span>{parameters[prop]}</span>
+			<span style={sorting === prop ? {color: '#1ba1be'} : {color: '#474747'}}>{value}</span>
+		</div>
+	);
 	return (
 		<div className="film-container">
 			<div className="film-container__collapser" onClick={(e) =>{
@@ -61,32 +64,33 @@ const Film: React.FC<Planet> = ({ name, planets }) => {
 			<div className="film-container__details">
 				{details && <>
 					<div className="film-container__details__tags">
-						{params.map(({ tag, data }, i) => <span
-							key={`tag_${i}${name}`}
+					{Object.entries(parameters).map(([param, name],i ) => (
+						<span
+							style={sorting === param ? {color: '#1ba1be'} : {color: '#474747'}}
+							key={`tag_${i}${param}`}
 							onClick={(e) => {
 								e.stopPropagation();
-								setSorting(data);
-							}}>{tag}&#8645;</span>)}
+								setSorting(param)
+							}}>{name}&#8645;
+						</span>)
+					)}
 					</div>
 					<hr />
 					{loading ? (
 					<Loader />
 				) : planetList.length ? (
-					<div>
-					{planetList.sort(sortPlanets).map(({ name, rotation_period, orbital_period, diameter, climate, surface_water, population }) => <div key={`param_${name}`} className="film-container__details__tags">
-						<span>{name}</span>
-						<span>{rotation_period}</span>
-						<span>{orbital_period}</span>
-						<span>{diameter}</span>
-						<span>{climate}</span>
-						<span>{surface_water}</span>
-						<span>{population}</span>
-					</div>)}
+					<div className="film-container__details-planet">
+						{planetList.sort(sortPlanets).map((e) => (
+							<div key={`param_${e.name}`} className="film-container__details__params">
+								{(Object.entries(e)
+									.filter(param => Object.keys(parameters).includes(param[0]))
+									.map(([prop, value], i) => generateProperties(prop, value, i)))} 
+							</div>) // nie wiem czy do końca mi sie to podoba i czy BigO byłoby tutaj ok przy większej ilości
+						)}
 					</div>
 				) : <h3>Sorry, no planets...</h3>}
 					</>
 				}
-
 			</div>
 		</div>
 	);

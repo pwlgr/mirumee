@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import uuid from 'uuid/v1';
 import Film from '../film/film';
 import NewFilm from '../newFilm/newFilm';
 import { Loader } from '../loader';
@@ -13,11 +12,15 @@ const Films: React.FC = () => {
 	const localFilms = JSON.parse(localStorage.getItem('films')) || [];
 	useEffect(() => {
 		const getFilms = async () => {
-			setLoading(true);
-			const result = await fetch('https://swapi.co/api/films/');
-			const data = await result.json();
-			setLoading(false);
-			setFilms([ ...data.results.map((e) => ({ title: e.title, planets: e.planets })), ...localFilms ]);
+			try {
+				setLoading(true);
+				const result = await fetch('https://swapi.co/api/films/');
+				const data = await result.json();
+				setLoading(false);
+				setFilms([ ...data.results.map((e) => ({ title: e.title, planets: e.planets })), ...localFilms ]);
+			} catch {
+				alert("There was a problem, please try again.");
+			}
 		};
 		getFilms();
 	}, []);
@@ -33,7 +36,7 @@ const Films: React.FC = () => {
 				{loading ? (
 					<Loader />
 				) : (
-					films.map(({ title, planets }) => <Film key={title} name={title} planets={planets} />)
+					films.map(({ title, planets }, i) => <Film key={`${title}_${i}`} name={title} planets={planets} />)
 				)}
 			</div>
 			<NewFilm addFilm={addNewFilm} name="Add movie" />
