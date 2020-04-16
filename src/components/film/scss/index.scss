@@ -59,6 +59,7 @@
 			color: $white;
 			margin-bottom: 20px;
 			left: 0px;
+			float: right;
 		}
 		&__params {
 			@extend .film-container__details__tags;
@@ -77,6 +78,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: flex-start;
+				flex-grow: 4 1;
 			}
 		}
 	}
@@ -97,6 +99,14 @@
 .new {
 	@extend .film-container__details;
 	padding: 0 25px;
+	width: 100%;
+	> div:nth-of-type(1) {
+		border: 1px solid green;
+		height: 100%;
+	}
+	div[data-react-toolbox="autocomplete"] {
+		width: 80%;
+	}
 }
 
 .copyright {
@@ -131,6 +141,9 @@
 				&:nth-of-type(2n) {
 					background: $light-gray;
 				}
+			}
+			&__button {
+				width: 80%;
 			}
 		}
 	}

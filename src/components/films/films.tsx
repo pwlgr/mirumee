@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Film from '../film/film';
 import NewFilm from '../newFilm/newFilm';
 import { Loader } from '../loader';
-import { Logo } from '../svg/logo';
 import './scss/index.scss';
 
 const Films: React.FC = () => {
@@ -18,8 +17,8 @@ const Films: React.FC = () => {
 				const data = await result.json();
 				setLoading(false);
 				setFilms([ ...data.results.map((e) => ({ title: e.title, planets: e.planets })), ...localFilms ]);
-			} catch {
-				alert("There was a problem, please try again.");
+			} catch (err) {
+				alert('There was a problem, please try again.');
 			}
 		};
 		getFilms();
@@ -31,7 +30,6 @@ const Films: React.FC = () => {
 	};
 	return (
 		<div className="films-container">
-			<Logo />
 			<div className="films-container__list">
 				{loading ? (
 					<Loader />

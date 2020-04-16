@@ -31,7 +31,7 @@ const NewFilm: React.FC<AddFilm> = ({ addFilm, name }) => {
 	const { title } = film;
 	const disabled = title.length < 3;
 	const saveFilm = () => {
-		if(!disabled){
+		if (!disabled) {
 			addFilm(film);
 			setFilm({ title: '', planets: [] });
 			setPlanets([]);
@@ -45,13 +45,15 @@ const NewFilm: React.FC<AddFilm> = ({ addFilm, name }) => {
 				{!details ? <ArrowDown /> : <ArrowUp />}
 			</div>
 			<div className="film-container__details new">
-				{details ? <> 
+				{details ? (
+					<div>
 						<Input
 							className="film-container__details__input"
 							label="Movie title"
 							error={disabled && 'Title must have at least 3 characters.'}
 							value={title}
-							onChange={(e) => setFilm({ ...film, title: capitalizeTitle(e) })} />
+							onChange={(e) => setFilm({ ...film, title: capitalizeTitle(e) })}
+						/>
 						<div className="film-container__details__input-search">
 							<Autocomplete
 								label="Add planet"
@@ -59,15 +61,18 @@ const NewFilm: React.FC<AddFilm> = ({ addFilm, name }) => {
 								source={suggestions}
 								onChange={addPlanets}
 								value={planets}
-								keepFocusOnChange={false} />
+								keepFocusOnChange={false}
+							/>
 							<Search />
 						</div>
-						<div 
-							className={`film-container__details__button ${!disabled ? 'enabled': 'disabled'}`}
-							onClick={saveFilm}>add movie
+						<div
+							className={`film-container__details__button ${!disabled ? 'enabled' : 'disabled'}`}
+							onClick={saveFilm}
+						>
+							add movie
 						</div>
-					</>
-				: null }
+					</div>
+				) : null}
 			</div>
 		</div>
 	);
