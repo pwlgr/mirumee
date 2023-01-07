@@ -12,7 +12,7 @@
 	"devDependencies": {
 		"awesome-typescript-loader": "^5.2.1",
 		"css-loader": "^3.2.0",
-		"html-webpack-plugin": "^3.2.0",
+		"html-webpack-plugin": "^5.5.0",
 		"node-sass": "^4.12.0",
 		"postcss-cssnext": "^3.1.0",
 		"postcss-each": "^0.10.0",
